@@ -16,22 +16,22 @@ This also maps to a similar option in Telegraf.
 Note
 ----
 
-This is only compatible with InfluxDB 0.9+.
+This is only compatible with InfluxDB 2.x and InfluxDB 1.8+.
 
 Usage
 -----
 
 ```go
-import "github.com/jregovic/go-metrics-influxdb"
+import "github.com/vrischmann/go-metrics-influxdb"
 
 go influxdb.InfluxDBWithTags(
     metrics.DefaultRegistry,    // metrics registry
     time.Second * 10,           // interval
     metricsHost,                // the InfluxDB url
-    database,                   // your InfluxDB database
+    org,                        // your InfluxDB org
+    bucket,                     // your InfluxDB bucket
     measurement,                // your measurement
-    metricsuser,                // your InfluxDB user
-    metricspass,                // your InfluxDB password
+    token,                      // your InfluxDB token
     tags,                       // your tag set as map[string]string
     aligntimestamps             // align the timestamps
 )
