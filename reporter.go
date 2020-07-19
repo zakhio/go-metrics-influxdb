@@ -1,4 +1,4 @@
-package influxdb
+package reporter
 
 import (
 	"context"
@@ -28,12 +28,12 @@ type reporter struct {
 }
 
 // InfluxDB starts a InfluxDB reporter which will post the metrics from the given registry at each d interval.
-func InfluxDB(r metrics.Registry, d time.Duration, url, org, bucket, measurement, token string, align bool) {
-	InfluxDBWithTags(r, d, url, org, bucket, measurement, token, map[string]string{}, align)
+func InfluxDB(r metrics.Registry, d time.Duration, url, org, bucket, measurement, token string, alignTimestamps bool) {
+	InfluxDBWithTags(r, d, url, org, bucket, measurement, token, map[string]string{}, alignTimestamps)
 }
 
 // InfluxDBWithTags starts a InfluxDB reporter which will post the metrics from the given registry at each d interval with the specified tags
-func InfluxDBWithTags(r metrics.Registry, d time.Duration, url, org, bucket, measurement, token string, tags map[string]string, align bool) {
+func InfluxDBWithTags(r metrics.Registry, d time.Duration, url, org, bucket, measurement, token string, tags map[string]string, alignTimestamps bool) {
 	u, err := uurl.Parse(url)
 	if err != nil {
 		log.Printf("unable to parse InfluxDB url %s. err=%v", url, err)
@@ -49,7 +49,7 @@ func InfluxDBWithTags(r metrics.Registry, d time.Duration, url, org, bucket, mea
 		measurement: measurement,
 		token:       token,
 		tags:        tags,
-		align:       align,
+		align:       alignTimestamps,
 	}
 	rep.makeClient()
 	rep.run()
