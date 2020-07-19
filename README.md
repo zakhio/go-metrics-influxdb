@@ -16,7 +16,7 @@ Usage
 -----
 
 ```go
-import reporter "github.com/zakhio/go-metrics-influxdb"
+import "github.com/zakhio/go-metrics-influxdb"
 
 go reporter.InfluxDBWithTags(
     metrics.DefaultRegistry,    // metrics registry
@@ -36,6 +36,8 @@ Metrics can be aligned to the beginning of a bucket as defined by the interval.
 Setting `alignTimestamps` to `true` will cause the timestamp to be truncated down to the nearest even integral of the reporting interval.
 
 For example, if the interval is 30 seconds, timestamps will be aligned on `:00` and `:30` for every reporting interval.
+
+Note: check [go-metrics-influxdb-grpc-example](https://github.com/zakhio/go-metrics-influxdb-grpc-example) for more hands on example. 
 
 License
 -------
