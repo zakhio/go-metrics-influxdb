@@ -21,13 +21,13 @@ import "github.com/zakhio/go-metrics-influxdb"
 go reporter.InfluxDBWithTags(
     metrics.DefaultRegistry,    // metrics registry
     time.Second * 10,           // reporting interval
-    metricsHost,                // InfluxDB instance url
-    org,                        // organization id
-    bucket,                     // data bucket id
+    serverURL,                  // InfluxDB instance url
+    organizationID,             // organization id
+    bucketID,                   // data bucket id
     measurement,                // measurement
     token,                      // access token
-    tags,                       // tags (for example, artifact name or/and version)
-    alignTimestamps             // align the timestamps
+    tags,                       // default tags (for example, server name, artifact version, etc)
+    alignTimestamps             // flag to align the timestamps
 )
 ```
 
